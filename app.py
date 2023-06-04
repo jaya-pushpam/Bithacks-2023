@@ -13,7 +13,7 @@ def get_model():
 caption_model = get_model()
 
 @st.cache_data
-def predict(cap_col):
+def predict(_cap_col):
     captions = []
     pred_caption = generate_caption('tmp.jpg', caption_model)
 
