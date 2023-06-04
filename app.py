@@ -6,13 +6,13 @@ from PIL import Image
 from model import get_caption_model, generate_caption
 
 
-@st.cache_data
+@st.cache_resources
 def get_model():
     return get_caption_model()
 
 caption_model = get_model()
 
-
+@st.cache_data
 def predict(cap_col):
     captions = []
     pred_caption = generate_caption('tmp.jpg', caption_model)
