@@ -6,7 +6,7 @@ from PIL import Image
 from model import get_caption_model, generate_caption
 
 
-@st.cache_resources
+@st.cache_resource
 def get_model():
     return get_caption_model()
 
