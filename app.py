@@ -32,7 +32,7 @@ def predict(_cap_col):
 
 
 st.markdown('<h1 style="text-align:center; font-family:Comic Sans MS; width:fit-content; font-size:3em; color:red; text-shadow: 2px 2px 4px #000000;">IMAGE CAPTION GENERATOR</h1>', unsafe_allow_html=True)
-col1, col2 = st.columns(2)
+col1, _col2 = st.columns(2)
 
 # Image URL input
 img_url = st.text_input(label='Enter Image URL')
