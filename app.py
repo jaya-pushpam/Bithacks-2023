@@ -27,27 +27,33 @@ def predict():
     
     for c in captions:
         st.write(c)
+st.markdown('<h1 style="text-align:center; font-family:Comic Sans MS; width:fit-content; font-size:3em; color:red; text-shadow: 2px 2px 4px #000000;">IMAGE CAPTION GENERATOR</h1>', unsafe_allow_html=True)
+col1, col2 = st.columns(2)
 
-st.title('Image Captioner')
+# Image URL input
 img_url = st.text_input(label='Enter Image URL')
 
-if (img_url != "") and (img_url != None):
-    img = Image.open(requests.get(img_url, stream=True).raw)
-    img = img.convert('RGB')
-    st.image(img)
-    img.save('tmp.jpg')
-    predict()
-    os.remove('tmp.jpg')
-
-
-st.markdown('<center style="opacity: 70%">OR</center>', unsafe_allow_html=True)
+# Image upload input
 img_upload = st.file_uploader(label='Upload Image', type=['jpg', 'png', 'jpeg'])
 
-if img_upload != None:
+# Process image and generate captions
+if img_url:
+    img = Image.open(requests.get(img_url, stream=True).raw)
+    img = img.convert('RGB')
+    col1.image(img, caption="Input Image", use_column_width=True)
+    img.save('tmp.jpg')
+    predict()
+
+    st.markdown('<center style="opacity: 70%">OR</center>', unsafe_allow_html=True)
+
+elif img_upload:
     img = img_upload.read()
     img = Image.open(io.BytesIO(img))
     img = img.convert('RGB')
+    col1.image(img, caption="Input Image", use_column_width=True)
     img.save('tmp.jpg')
-    st.image(img)
     predict()
+
+# Remove temporary image file
+if img_url or img_upload:
     os.remove('tmp.jpg')
